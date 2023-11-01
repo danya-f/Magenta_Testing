@@ -1,5 +1,4 @@
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support.ui import WebDriverWait as wait
 
@@ -18,5 +17,8 @@ class BasePage:
 
     def is_clickable(self, locator) -> WebElement:
         return wait(self.driver, timeout=20).until(EC.element_to_be_clickable(locator))
+
+    def current_url(self):
+        return self.driver.current_url
 
 
