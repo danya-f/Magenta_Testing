@@ -1,4 +1,3 @@
-from pages.any_page import AnyPage
 from pages.signin_page import SignInPage
 from data.urls import SIGNIN_PAGE_URL, ACCOUNT_PAGE, ERROR_SIGNIN_MSG
 
@@ -30,3 +29,14 @@ class Test_SignIn:
         page.signin_button().click()
         assert page.current_url() != ACCOUNT_PAGE, "удалось залогиниться с неправильным паролем"
         assert page.error_signin_msg().text == ERROR_SIGNIN_MSG, "неправильное сообщение об ошибке при попытке логина с неправильным паролем"
+
+    def test_with_good_email_password_full_automation(self, driver, good_email, good_password):
+        page = SignInPage(driver, SIGNIN_PAGE_URL)
+        page.login_with_good_email_password(page,good_email , good_password)
+        assert page.current_url() == ACCOUNT_PAGE
+
+    def test_with_bad_email_password_full_automation(self, driver, fake_email, fake_password):
+        page = SignInPage(driver, SIGNIN_PAGE_URL)
+        page.login_with_fake_email_password(page,fake_email , fake_password)
+        assert page.current_url() != ACCOUNT_PAGE, "удалось залогиниться в несуществующий аккаунт"
+        assert page.error_signin_msg().text == ERROR_SIGNIN_MSG, "неправильное сообщение об ошибке при попытке логина с фейковыми данными"
