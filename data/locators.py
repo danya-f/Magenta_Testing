@@ -58,6 +58,16 @@ class CreateAnAccountPageLocators:
     SIGN_IN_BUTTON = (By.XPATH, "//button[@id='send2' and @class='action login primary']")
     FORGOT_PASSWORD_BUTTON = (By.XPATH, "//a[@class='action remind']")
 
+    # #MSG
+    ERROR_FIRSTNAME_FIELD = (By.XPATH , "//*[@id='firstname-error']")
+    ERROR_LASTNAME_FIELD = (By.XPATH, "//*[@id='lastname-error']")
+    ERROR_EMAIL_FIELD = (By.XPATH, "//*[@id='email_address-error']")
+    ERROR_FIRST_PASSWORD_FIELD = (By.XPATH, "//*[@id='password-error']")
+    ERROR_CONFIRM_PASSWORD_FIELD = (By.XPATH, "//*[@id='password-confirmation-error']")
+
+
+
+
 
 
 class MyAccountPageLocators:

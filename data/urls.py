@@ -20,5 +20,9 @@ SALE_CATALOG_PAGE_URL = "https://magento.softwaretestingboard.com/sale.html"
 ACCOUNT_PAGE = "https://magento.softwaretestingboard.com/customer/account/"
 
 
+#MSG
 THX_FOR_REGISTRATION_MSG = "Thank you for registering with Main Website Store."
 ERROR_SIGNIN_MSG= "The account sign-in was incorrect or your account is disabled temporarily. Please wait and try again later."
+ERROR_MSG_FIELD_FILL = "This is a required field."
+ERROR_MSG_SECOND_PASSWORD_WRONG = "Please enter the same value again."
+ERROR_MSG_INVALID_EMAIL = "Please enter a valid email address (Ex: johndoe@domain.com)."

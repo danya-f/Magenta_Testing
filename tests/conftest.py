@@ -28,6 +28,16 @@ def fake_password():
     fake_password = fake.password()
     return fake_password
 
+@pytest.fixture()
+def fake_firstname():
+    fake_firstname = fake.first_name()
+    return fake_firstname
+
+@pytest.fixture()
+def fake_lastname():
+    fake_lastname = fake.last_name()
+    return fake_lastname
+
 
 @pytest.fixture()
 def fake_email():
