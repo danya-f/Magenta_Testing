@@ -1,10 +1,19 @@
 
 
+#myaccountURLS
+MY_ACCOUNT_URL = "https://magento.softwaretestingboard.com/customer/account/"
+MY_ORDERS_URL = "https://magento.softwaretestingboard.com/sales/order/history/"
+MY_DOWNLOADABLE_PRODUCTS_URL = "https://magento.softwaretestingboard.com/downloadable/customer/products/"
+MY_WISH_LIST_URL = "https://magento.softwaretestingboard.com/wishlist/"
+ADDRESS_BOOK_URL = "https://magento.softwaretestingboard.com/customer/address/"
+NEW_ADDRESS_BOOK_URL = "https://magento.softwaretestingboard.com/customer/address/new/"
+ACCOUNT_INFORMATION_URL = "https://magento.softwaretestingboard.com/customer/account/edit/"
+STORED_PAYMENT_METHODS_USR = "https://magento.softwaretestingboard.com/vault/cards/listaction/"
+MY_PRODUCT_REVIEW_URL = "https://magento.softwaretestingboard.com/review/customer/"
 
 
 
-
-
+################################################################
 MAIN_PAGE_URL = "https://magento.softwaretestingboard.com/"
 
 SIGNIN_PAGE_URL = "https://magento.softwaretestingboard.com/customer/account/login"
