@@ -6,6 +6,11 @@ from base.basepage import BasePage
 
 
 class CreateAnAccountPage(BasePage):
+    URL = "https://magento.softwaretestingboard.com/customer/account/create"
+
+    def __init__(self, driver, url=URL):
+        super().__init__(driver, url)
+
 
     def first_name_field(self) -> WebElement:
         return self.is_visible(CreateAnAccountPageLocators.FIRST_NAME_FIELD)
@@ -55,14 +60,13 @@ class CreateAnAccountPage(BasePage):
     def error_first_password_not_filled(self):
         return self.is_visible(CreateAnAccountPageLocators.ERROR_FIRST_PASSWORD_FIELD).text
 
-    def error_confirm_password_not_filled(self):
+    def error_confirm_password_not_filled_or_not_same_like_first(self):
         return self.is_visible(CreateAnAccountPageLocators.ERROR_CONFIRM_PASSWORD_FIELD).text
 
     def error_invalid_email(self):
         return self.is_visible(CreateAnAccountPageLocators.ERROR_EMAIL_FIELD).text
 
-
-    def create_account_without_email(self,page ,password , firstname , lastname):
+    def create_account_without_email(self, page, password, firstname, lastname):
         page.open()
         page.first_name_fill(firstname)
         page.last_name_fill(lastname)
@@ -71,7 +75,7 @@ class CreateAnAccountPage(BasePage):
         page.create_an_account_button_click()
         return page
 
-    def create_account_without_second_password(self,page , email ,password , firstname , lastname):
+    def create_account_without_second_password(self, page, email, password, firstname, lastname):
         page.open()
         page.email_fill(email)
         page.first_name_fill(firstname)
@@ -80,7 +84,7 @@ class CreateAnAccountPage(BasePage):
         page.create_an_account_button_click()
         return page
 
-    def create_account_with_invalid_email(self,page,password , firstname , lastname):
+    def create_account_with_invalid_email(self, page, password, firstname, lastname):
         page.open()
         page.email_fill('danyldykmail.com')
         page.first_name_fill(firstname)
@@ -90,12 +94,15 @@ class CreateAnAccountPage(BasePage):
         page.create_an_account_button_click()
         return page
 
-
-
-
-
-
-
+    def create_account_with_wrong_second_password(self, page, password, firstname, lastname, email):
+        page.open()
+        page.email_fill(email)
+        page.first_name_fill(firstname)
+        page.last_name_fill(lastname)
+        page.first_password_fill(password)
+        page.confirm_password_fill(password+'1')
+        page.create_an_account_button_click()
+        return page
 
     # def error_signin_msg(self):
     #     return self.is_visible(SignInPageLocators.ERROR_SIGNIN_MSG)
@@ -113,4 +120,3 @@ class CreateAnAccountPage(BasePage):
     #     page.password_field().send_keys(password)
     #     page.signin_button().click()
     #     return page
-

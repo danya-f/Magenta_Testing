@@ -6,6 +6,10 @@ from base.basepage import BasePage
 
 
 class SignInPage(BasePage):
+    URL = "https://magento.softwaretestingboard.com/customer/account/login"
+
+    def __init__(self, driver, url=URL):
+        super().__init__(driver, url)
 
     def email_field(self) -> WebElement:
         return self.is_visible(SignInPageLocators.EMAIL_FIELD)
@@ -16,7 +20,7 @@ class SignInPage(BasePage):
     def password_field(self) -> WebElement:
         return self.is_visible(SignInPageLocators.PASSWORD_FIELD)
 
-    def password_field_fill(self ,password) -> None:
+    def password_field_fill(self, password) -> None:
         return self.is_visible(SignInPageLocators.PASSWORD_FIELD).send_keys(password)
 
     def signin_button(self) -> WebElement:
@@ -34,20 +38,16 @@ class SignInPage(BasePage):
     def error_signin_msg(self):
         return self.is_visible(SignInPageLocators.ERROR_SIGNIN_MSG)
 
-    def login_with_good_email_password(self ,page, email , password):
+    def login_with_good_email_password(self, page, email, password):
         page.open()
         page.email_field().send_keys(email)
         page.password_field().send_keys(password)
         page.signin_button().click()
         return page
 
-    def login_with_fake_email_password(self ,page, email , password):
+    def login_with_fake_email_password(self, page, email, password):
         page.open()
         page.email_field().send_keys(email)
         page.password_field().send_keys(password)
         page.signin_button().click()
         return page
-
-
-
-
