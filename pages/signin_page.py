@@ -1,8 +1,10 @@
 from selenium.webdriver.remote.webelement import WebElement
 from data.locators import SignInPageLocators
 from data.locators import MyAccountPageLocators
-
 from base.basepage import BasePage
+#ВРЕМЕННО ТЕСТИРУЮ
+from pages.my_accoun_page import MyAccountPage
+
 
 
 class SignInPage(BasePage):
@@ -38,16 +40,24 @@ class SignInPage(BasePage):
     def error_signin_msg(self):
         return self.is_visible(SignInPageLocators.ERROR_SIGNIN_MSG)
 
-    def login_with_good_email_password(self, page, email, password):
-        page.open()
-        page.email_field().send_keys(email)
-        page.password_field().send_keys(password)
-        page.signin_button().click()
-        return page
 
-    def login_with_fake_email_password(self, page, email, password):
-        page.open()
-        page.email_field().send_keys(email)
-        page.password_field().send_keys(password)
-        page.signin_button().click()
-        return page
+    def login_with_good_email_password(self,email,password):
+        self.open()
+        self.email_field_fill(email)
+        self.password_field_fill(password)
+        self.signin_button().click()
+        return MyAccountPage(driver=self.driver , url=self.driver.current_url)
+
+    def login_with_fake_email_password(self, email, password):
+        self.open()
+        self.email_field().send_keys(email)
+        self.password_field().send_keys(password)
+        self.signin_button().click()
+        return self
+
+    def login_with_incorrect_password(self, email, password):
+        self.open()
+        self.email_field_fill(email)
+        self.password_field_fill(password)
+        self.signin_button().click()
+        return self

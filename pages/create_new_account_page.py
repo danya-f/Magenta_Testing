@@ -4,13 +4,11 @@ from data.locators import MyAccountPageLocators
 from base.basepage import BasePage
 
 
-
 class CreateAnAccountPage(BasePage):
     URL = "https://magento.softwaretestingboard.com/customer/account/create"
 
     def __init__(self, driver, url=URL):
         super().__init__(driver, url)
-
 
     def first_name_field(self) -> WebElement:
         return self.is_visible(CreateAnAccountPageLocators.FIRST_NAME_FIELD)
@@ -66,57 +64,94 @@ class CreateAnAccountPage(BasePage):
     def error_invalid_email(self):
         return self.is_visible(CreateAnAccountPageLocators.ERROR_EMAIL_FIELD).text
 
-    def create_account_without_email(self, page, password, firstname, lastname):
-        page.open()
-        page.first_name_fill(firstname)
-        page.last_name_fill(lastname)
-        page.first_password_fill(password)
-        page.confirm_password_fill(password)
-        page.create_an_account_button_click()
-        return page
+    def create_account_with_good_email_and_password(self, password, firstname, lastname, email):
+        self.open()
+        self.email_fill(email)
+        self.first_name_fill(firstname)
+        self.last_name_fill(lastname)
+        self.first_password_fill(password)
+        self.confirm_password_fill(password)
+        self.create_an_account_button_click()
+        return self
 
-    def create_account_without_second_password(self, page, email, password, firstname, lastname):
-        page.open()
-        page.email_fill(email)
-        page.first_name_fill(firstname)
-        page.last_name_fill(lastname)
-        page.first_password_fill(password)
-        page.create_an_account_button_click()
-        return page
+    def create_account_without_firstname(self, password, email, lastname):
+        self.open()
+        self.email_fill(email)
+        self.last_name_fill(lastname)
+        self.first_password_fill(password)
+        self.confirm_password_fill(password)
+        self.create_an_account_button_click()
+        return self
 
-    def create_account_with_invalid_email(self, page, password, firstname, lastname):
-        page.open()
-        page.email_fill('danyldykmail.com')
-        page.first_name_fill(firstname)
-        page.last_name_fill(lastname)
-        page.first_password_fill(password)
-        page.confirm_password_fill(password)
-        page.create_an_account_button_click()
-        return page
+    def create_account_without_lastname(self, password, email, firstname):
+        self.open()
+        self.email_fill(email)
+        self.first_name_fill(firstname)
+        self.first_password_fill(password)
+        self.confirm_password_fill(password)
+        self.create_an_account_button_click()
+        return self
 
-    def create_account_with_wrong_second_password(self, page, password, firstname, lastname, email):
-        page.open()
-        page.email_fill(email)
-        page.first_name_fill(firstname)
-        page.last_name_fill(lastname)
-        page.first_password_fill(password)
-        page.confirm_password_fill(password+'1')
-        page.create_an_account_button_click()
-        return page
+    def create_account_without_email(self, password, firstname, lastname):
+        self.open()
+        self.first_name_fill(firstname)
+        self.last_name_fill(lastname)
+        self.first_password_fill(password)
+        self.confirm_password_fill(password)
+        self.create_an_account_button_click()
+        return self
+
+    def create_account_without_second_password(self, email, password, firstname, lastname):
+        self.open()
+        self.email_fill(email)
+        self.first_name_fill(firstname)
+        self.last_name_fill(lastname)
+        self.first_password_fill(password)
+        self.create_an_account_button_click()
+        return self
+
+    def create_account_without_first_password(self, email, password, firstname, lastname):
+        self.open()
+        self.email_fill(email)
+        self.first_name_fill(firstname)
+        self.last_name_fill(lastname)
+        self.confirm_password_fill(password)
+        self.create_an_account_button_click()
+        return self
+
+    def create_account_with_invalid_email(self, password, firstname, lastname):
+        self.open()
+        self.email_fill('danyldykmail.com')
+        self.first_name_fill(firstname)
+        self.last_name_fill(lastname)
+        self.first_password_fill(password)
+        self.confirm_password_fill(password)
+        self.create_an_account_button_click()
+        return self
+
+    def create_account_with_wrong_second_password(self, password, firstname, lastname, email):
+        self.open()
+        self.email_fill(email)
+        self.first_name_fill(firstname)
+        self.last_name_fill(lastname)
+        self.first_password_fill(password)
+        self.confirm_password_fill(password + '1')
+        self.create_an_account_button_click()
+        return self
 
     # def error_signin_msg(self):
     #     return self.is_visible(SignInPageLocators.ERROR_SIGNIN_MSG)
     #
     # def login_with_good_email_password(self ,page, email , password):
-    #     page.open()
-    #     page.email_field().send_keys(email)
-    #     page.password_field().send_keys(password)
-    #     page.signin_button().click()
+    #     self.open()
+    #     self.email_field().send_keys(email)
+    #     self.password_field().send_keys(password)
+    #     self.signin_button().click()
     #     return page
     #
     # def login_with_fake_email_password(self ,page, email , password):
-    #     page.open()
-    #     page.email_field().send_keys(email)
-    #     page.password_field().send_keys(password)
-    #     page.signin_button().click()
+    #     self.open()
+    #     self.email_field().send_keys(email)
+    #     self.password_field().send_keys(password)
+    #     self.signin_button().click()
     #     return page
